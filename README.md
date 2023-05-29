@@ -7,4 +7,4 @@ Flutter 2.10.0 <br>
 Dart 2.16.0 <br>
 
 # Preview
-<p align="left"><img src="weather2.png" width="360" height="780"/></p>
+<p align="left"><img src="weather2.png" width="360" height="640"/></p>
