@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../screens/loading.dart';
 
@@ -99,7 +98,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 120.0,
+                        height: MediaQuery.of(context).size.height * 0.20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +139,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 70.0,
+                            height: MediaQuery.of(context).size.height * 0.15,
                           ),
                           Text(
                             '$cityName',
@@ -187,7 +186,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 3.0,
                               ),
                               Text(
-                                '$pm2''ug/m³',
+                                '$pm10''ug/m³',
                                 style: GoogleFonts.lato(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.bold,
@@ -197,13 +196,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 8.0,
                               ),
                               LinearPercentIndicator(
-                                width: 100,
+                                width: MediaQuery.of(context).size.width * 0.3,
                                 animation: true,
-                                lineHeight: 20.0,
+                                lineHeight: 25.0,
                                 animationDuration: 1000,
-                                percent: pm2/150,
-                                linearStrokeCap: LinearStrokeCap.roundAll,
-                                progressColor: Colors.green,
+                                percent: pm10/100,
+                                barRadius: const Radius.circular(16),
+                                progressColor: pm10 < 50 ? Colors.green : pm10 < 100 ? Colors.orange : Colors.red,
                               ),
                             ],
                           ),
@@ -220,7 +219,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 3.0,
                               ),
                               Text(
-                                '$pm10''ug/m³',
+                                '$pm2''ug/m³',
                                 style: GoogleFonts.lato(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.bold,
@@ -230,20 +229,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 8.0,
                               ),
                               LinearPercentIndicator(
-                                width: 100,
+                                width: MediaQuery.of(context).size.width * 0.3,
                                 animation: true,
-                                lineHeight: 20.0,
+                                lineHeight: 25.0,
                                 animationDuration: 1000,
-                                percent: pm10/50,
-                                linearStrokeCap: LinearStrokeCap.roundAll,
-                                progressColor: Colors.green,
+                                percent: pm2/100,
+                                barRadius: const Radius.circular(16),
+                                progressColor: pm2 < 35 ? Colors.green : pm2 < 50 ? Colors.orange : Colors.red,
                               ),
                             ],
                           )
                         ]
                       ),
                       SizedBox(
-                        height: 40.0,
+                        height: MediaQuery.of(context).size.height * 0.06,
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
