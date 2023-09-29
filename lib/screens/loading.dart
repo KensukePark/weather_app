@@ -12,7 +12,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  final WEATHER_API_KEY = '***';
+  final WEATHER_API_KEY = 'abfa4af0f068cc9370136ff207da94ab';
   late double latitude3;
   late double longitude3;
 
