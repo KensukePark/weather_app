@@ -32,13 +32,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   void updateData(dynamic weatherData, dynamic airData){
     print(weatherData);
-    double temp_now_tmp =weatherData['main']['temp'];
-    double temp_min_tmp = weatherData['main']['temp_min'];
-    double temp_max_tmp = weatherData['main']['temp_max'];
-    double temp_feel_tmp = weatherData['main']['feels_like'];
-    double wind_tmp = weatherData['wind']['speed'];
-    double pm2_tmp = airData['list'][0]['components']['pm2_5'];
-    double pm10_tmp = airData['list'][0]['components']['pm10'];
+    num temp_now_tmp =weatherData['main']['temp'];
+    num temp_min_tmp = weatherData['main']['temp_min'];
+    num temp_max_tmp = weatherData['main']['temp_max'];
+    num temp_feel_tmp = weatherData['main']['feels_like'];
+    num wind_tmp = weatherData['wind']['speed'];
+    num pm2_tmp = airData['list'][0]['components']['pm2_5'];
+    num pm10_tmp = airData['list'][0]['components']['pm10'];
     humid = weatherData['main']['humidity'];
     cityName = weatherData['name'];
     nowWeather = weatherData['weather'][0]['main'];
@@ -200,9 +200,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 animation: true,
                                 lineHeight: 25.0,
                                 animationDuration: 1000,
-                                percent: pm10/100,
+                                percent: pm10 > 150 ? 1.0 : pm10/150,
                                 barRadius: const Radius.circular(16),
-                                progressColor: pm10 < 50 ? Colors.green : pm10 < 100 ? Colors.orange : Colors.red,
+                                progressColor: pm10 < 80 ? Colors.green : pm10 < 150 ? Colors.orange : Colors.red,
                               ),
                             ],
                           ),
@@ -233,9 +233,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 animation: true,
                                 lineHeight: 25.0,
                                 animationDuration: 1000,
-                                percent: pm2/100,
+                                percent: pm2 > 100 ? 1.0 : pm2/100 ,
                                 barRadius: const Radius.circular(16),
-                                progressColor: pm2 < 35 ? Colors.green : pm2 < 50 ? Colors.orange : Colors.red,
+                                progressColor: pm2 < 50 ? Colors.green : pm2 < 100 ? Colors.orange : Colors.red,
                               ),
                             ],
                           )

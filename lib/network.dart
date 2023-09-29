@@ -1,12 +1,10 @@
 import 'package:http/http.dart' as http;
-import 'dart:convert'; // jsonDcode 사용 가능
+import 'dart:convert';
 
 class Network{
-
   late final String url; // 날씨정보
   late final String url2; // 미세먼지(기상정보)
 
-  // 생성자 : 앞 loading 코드에서 보낸 주소를 받습니다.
   Network(this.url, this.url2);
 
   Future<dynamic> getJsonData() async{
@@ -17,10 +15,8 @@ class Network{
       var parsingData = jsonDecode(jsonData);
 
       return parsingData;
-    } else{
-      // 예외상황 처리
-    }
-  } // ...getJsonData()
+    } else{}
+  }
 
   Future<dynamic> getAirData() async{
     http.Response response = await http.get(Uri.parse(url2));
@@ -29,9 +25,6 @@ class Network{
       var parsingData = jsonDecode(jsonData);
 
       return parsingData;
-    } else{
-      // 예외상황 처리
-    }
-  } // ...getAirData()
-
+    } else{}
+  }
 }

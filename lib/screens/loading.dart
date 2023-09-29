@@ -12,7 +12,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  final WEATHER_API_KEY = 'abfa4af0f068cc9370136ff207da94ab';
+  final WEATHER_API_KEY = '***';
   late double latitude3;
   late double longitude3;
 
@@ -23,15 +23,14 @@ class _LoadingState extends State<Loading> {
   }
 
   void getLocation() async {
-    // 앞 포스팅에서 만들었던 위치정보 클래스 사용
     Location myLocation = Location();
     await myLocation.getMyCurrentLocation();
 
-    // 받아온 위치(위, 경도 값)을 변수에 저장
     latitude3 = myLocation.latitude2;
     longitude3 = myLocation.longitude2;
+    //latitude3 = 37.5006;
+    //longitude3 = 126.7076;
 
-    // 네트워크 인스턴스 영역
     Network network = Network('https://api.openweathermap.org/data/2.5/weather?lat=$latitude3&lon=$longitude3&appid=$WEATHER_API_KEY&units=metric',
         'https://api.openweathermap.org/data/2.5/air_pollution?lat=$latitude3&lon=$longitude3&appid=$WEATHER_API_KEY');
     var weatherData = await network.getJsonData();
@@ -40,7 +39,7 @@ class _LoadingState extends State<Loading> {
     Navigator.push(context, MaterialPageRoute(builder: (context){
       return WeatherScreen(parseWeatherData: weatherData, parseAirData: airData,);
     }));
-  } // ...getLocation()
+  }
 
   @override
   Widget build(BuildContext context) {
